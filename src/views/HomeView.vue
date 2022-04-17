@@ -1,12 +1,11 @@
 <template>
 <div class="home">
-    <h1>Star Wars Api</h1>
-    <img src="../assets/Star-wars-logo-new-tall.webp" alt="" width="600" height="200">
+    <img src="../assets/Star-wars-logo-new-tall.webp" alt="">
+    <h1>Star Wars Factiods</h1>
     <div class="container">
         <!-- characters -->
         <div class="people-wrapper">
             <h2>Star Wars Character facts</h2>
-            <button class="people-btn" v-on:click="getPeople">Go</button>
             <div class="content">
                 <div class="label">NAME:
                     <div class="item">{{ people.name }}</div>
@@ -23,13 +22,13 @@
                 <div class="label">SKIN COLOUR:
                     <div class="item">{{ people.skin_color }}</div>
                 </div>
+            <button class="people-btn" v-on:click="getPeople">Go</button>
             </div>
         </div>
         <!-- planets -->
         <div class="planet-wrapper">
             <h2>Star Wars Planet facts</h2>
-            <button class="people-btn" v-on:click="getPlanets">Go</button>
-            <div v-if="planets" class="content">
+            <div class="content">
                 <div class="label">NAME:
                     <div class="item">{{ planets.name }}</div>
                 </div>
@@ -45,6 +44,29 @@
                 <div class="label">DIAMETER:
                     <div class="item">{{ planets.diameter }}</div>
                 </div>
+            <button class="people-btn" v-on:click="getPlanets">Go</button>
+            </div>
+        </div>
+        <!-- starships -->
+        <div class="planet-wrapper">
+            <h2>Star Wars Starships facts</h2>
+            <div class="content">
+                <div class="label">NAME:
+                    <div class="item">{{ ships.name }}</div>
+                </div>
+                 <div class="label">MODEL:
+                    <div class="item">{{ ships.model }}</div>
+                </div> 
+                <div class="label">STARSHIP CLASS:
+                    <div class="item">{{ ships.starship_class }}</div>
+                </div> 
+                <div class="label">MANUFACTURER:
+                    <div class="item">{{ ships.manufacturer }}</div>
+                </div>
+                <div class="label">CONSUMABLES:
+                    <div class="item">{{ ships.consumables }}</div>
+                </div>
+            <button class="people-btn" v-on:click="getShips">Go</button>
             </div>
         </div>
     </div>
@@ -60,6 +82,7 @@ export default {
         return {
             people: [],
             planets: [],
+            ships: [],
             id: ''
         }
 
@@ -88,6 +111,18 @@ export default {
 
                     console.log(this.planets)
                 })
+        },
+        getShips() {
+            let id = Math.floor(Math.random() * 10);
+            fetch(`https://swapi.dev/api/starships/${this.id, id}/`)
+                .then((response) => {
+                    console.log(id)
+                    return response.json()
+                }).then((data) => {
+                    this.ships = data;
+
+                    console.log(this.ships)
+                })
         }
     },
     mounted() {
@@ -99,8 +134,6 @@ export default {
 <style scoped>
 .home {
     width: 100%;
-    max-width: 50%;
-    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -117,7 +150,6 @@ img {
     margin: auto;
     width: 100%;
     margin-bottom: 20px;
-    padding: 10px;
 }
 
 .people-wrapper,
@@ -125,10 +157,13 @@ img {
     background-color: #000;
     padding: 15px;
     border: 4px dotted #f1f446;
-    margin: 0px 10px 0px 10px;
+    margin: 5px 10px 5px 10px;
+    width: 100%;
+    min-width: 33%;
     height: 100%;
-    min-height: 460px;
+    min-height: 500px;
     border-radius: 20px;
+    
 }
 
 h2,
