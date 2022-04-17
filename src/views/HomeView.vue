@@ -3,46 +3,52 @@
     <h1>Star Wars Api</h1>
     <img src="../assets/Star-wars-logo-new-tall.webp" alt="" width="600" height="200">
     <div class="container">
-      <!-- characters -->
-    <div class="people-wrapper">
-        <h2>Star Wars Character facts</h2>
-        <button class="people-btn" v-on:click="getPeople">Go</button>
-        <div class="content">
-            <div class="label">NAME:
-                <div class="item">{{ people.name }}</div>
+        <!-- characters -->
+        <div class="people-wrapper">
+            <h2>Star Wars Character facts</h2>
+            <button class="people-btn" v-on:click="getPeople">Go</button>
+            <div class="content">
+                <div class="label">NAME:
+                    <div class="item">{{ people.name }}</div>
+                </div>
+                <div class="label">GENDER:
+                    <div class="item">{{ people.gender }}</div>
+                </div>
+                <div class="label">HEIGHT:
+                    <div class="item">{{ people.height }}</div>
+                </div>
+                <div class="label">HAIR COLOUR:
+                    <div class="item">{{ people.hair_color }}</div>
+                </div>
+                <div class="label">SKIN COLOUR:
+                    <div class="item">{{ people.skin_color }}</div>
+                </div>
             </div>
-            <div class="label">GENDER:
-                <div class="item">{{ people.gender }}</div>
-            </div>
-            <div class="label">HEIGHT:
-                <div class="item">{{ people.height }}</div>
-            </div>
-            <div class="label">HAIR COLOUR:
-                <div class="item">{{ people.hair_color }}</div>
-            </div>
-            <div class="label">SKIN COLOUR:
-                <div class="item">{{ people.skin_color }}</div>
+        </div>
+        <!-- planets -->
+        <div class="planet-wrapper">
+            <h2>Star Wars Planet facts</h2>
+            <button class="people-btn" v-on:click="getPlanets">Go</button>
+            <div v-if="planets" class="content">
+                <div class="label">NAME:
+                    <div class="item">{{ planets.name }}</div>
+                </div>
+                <div class="label">POULATION:
+                    <div class="item">{{ planets.population }}</div>
+                </div>
+                <div class="label">CLIMATE:
+                    <div class="item">{{ planets.climate }}</div>
+                </div>
+                <div class="label">ORBITAL PERIOD:
+                    <div class="item">{{ planets.orbital_period }}</div>
+                </div>
+                <div class="label">DIAMETER:
+                    <div class="item">{{ planets.diameter }}</div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- planets -->
-    <div class="planet-wrapper">
-        <h2>Star Wars Planet facts</h2>
-        <button class="people-btn" v-on:click="getPlanets">Go</button>
-        <div class="content">
-            <div class="label">NAME:
-                <div class="item">{{ planets.name }}</div>
-            </div>
-            <div class="label">POULATION:
-                <div class="item">{{ planets.population }}</div>
-            </div>
-            <div class="label">CLIMATE:
-                <div class="item">{{ planets.climate }}</div>
-            </div>
-        </div>
-    </div>
-    </div>
-  
+
 </div>
 </template>
 
@@ -95,19 +101,32 @@ export default {
     width: 100%;
     max-width: 50%;
     margin: auto;
-}
-.container {
-  display: flex;
-}
-.img {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.people-wrapper, .planet-wrapper {
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    margin: auto;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.people-wrapper,
+.planet-wrapper {
     background-color: #000;
     padding: 15px;
     border: 4px dotted #f1f446;
     margin: 0px 10px 0px 10px;
+    height: 100%;
 }
 
 h2,
@@ -132,5 +151,12 @@ h2,
     padding: 5px 10px;
     margin-bottom: 10px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 780px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 </style>
