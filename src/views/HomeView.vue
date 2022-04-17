@@ -127,6 +127,8 @@ img {
     border: 4px dotted #f1f446;
     margin: 0px 10px 0px 10px;
     height: 100%;
+    min-height: 460px;
+    border-radius: 20px;
 }
 
 h2,
